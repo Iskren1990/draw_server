@@ -9,5 +9,9 @@ export 'package:mongo_dart/mongo_dart.dart';
 
 export 'routes/user.dart';
 export 'routes/drawing.dart';
-export 'config/cors.dart';
+export 'routes/static.dart';
+export 'middleware/cors.dart';
+export 'middleware/auth.dart';
 export 'config/conf.dart';
+export 'controlers/user.dart';
+export 'utils/secure.dart';

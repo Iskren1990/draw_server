@@ -1,26 +1,20 @@
+import 'package:server/middleware/auth.dart';
 import 'package:server/server.dart';
 
-int PORT = 3000;
-
 void main(List<String> arguments) async {
-
-  final db = await Db.create(r'mongodb+srv://draw:draw@cluster0.4dqi4.mongodb.net/draw?retryWrites=true&w=majority');
+  
+  final db = await Db.create(Env.mongoUrl);
 
   final app = Router();
 
-  app.mount('/api/user/', User().router);
+  app.mount('/api/user/', User(db).router);
   app.mount('/api/draw/', Drawing().router);
+  app.mount('/', Static('public').router);
 
-  app.get('/api/assets/<name|.*>', createStaticHandler('public'));
-
-  app.get('/api/<name|.*>', (Request req, String name) {
-    final indexHTML = File('public/index.html').readAsStringSync();
-    return Response.ok(indexHTML, headers: {'Content-Type': 'text/html'});
-  });
-
-  final hendler = Pipeline()
+  final handler = Pipeline()
       .addMiddleware(logRequests())
       .addMiddleware(handleCors())
+      .addMiddleware(handleAuth())
       .addHandler(app);
 
   await db
@@ -28,7 +22,7 @@ void main(List<String> arguments) async {
       .then((value) => print('Connected to database'))
       .catchError(print);
 
-  await serve(hendler, 'localhost', Env.port)
-      .then((value) => print('Server is running on port $PORT'))
+  await serve(handler, 'localhost', Env.port)
+      .then((value) => print('Server is running on port ${Env.port}'))
       .catchError(print);
 }
