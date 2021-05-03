@@ -1,21 +1,11 @@
-import 'package:server/middleware/auth.dart';
 import 'package:server/server.dart';
 
 void main(List<String> arguments) async {
   
   final db = await Db.create(Env.mongoUrl);
+  UserService(db);
 
-  final app = Router();
-
-  app.mount('/api/user/', User(db).router);
-  app.mount('/api/draw/', Drawing().router);
-  app.mount('/', Static('public').router);
-
-  final handler = Pipeline()
-      .addMiddleware(logRequests())
-      .addMiddleware(handleCors())
-      .addMiddleware(handleAuth())
-      .addHandler(app);
+  final handler = AppRouter().router;
 
   await db
       .open(secure: true)
