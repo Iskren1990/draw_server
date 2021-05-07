@@ -38,8 +38,8 @@ To get a local copy up and running follow these simple example steps.
 
 :one: Download the app or clone the repo:
 
-  
    :hash:  `` git clone https://github.com/Iskren1990/draw-client.git ``
+    
    :hash:  `` git clone https://github.com/Iskren1990/draw_server.git ``
 
 
@@ -51,11 +51,11 @@ To use local MongoDB change "MONGO_URL" and "SUPER_SECRET_KEY" located in ".env"
 
 In the root folder of the client and server execute: 
 
-	--Server--
+   --Server--
     :hash: `` dart pub get ``
 
 
-    --Client--
+   --Client--
     :hash: `` dart pub global activate webdev ``
     :hash: `` dart pub get ``
     :hash: `` webdev serve ``
@@ -69,6 +69,7 @@ By default the project uses port 3000 and 8080.
 
 
    :hash: `` netstat -aon | find '3000' ``
+   
    :hash: `` netstat -aon | find '8080' ``
 	
 
@@ -76,6 +77,7 @@ By default the project uses port 3000 and 8080.
 
 
    :hash: ```sh sudo netstat -anp | grep ':3000' ```
+   
    :hash: ```sh sudo netstat -anp | grep ':8080' ```
 	
 
@@ -93,11 +95,11 @@ If the port is in use by other software you can change it by:
 
 To start the server run:
 
-    :hash: `` dart run ``
+   :hash: `` dart run ``
 
 To start the client run:
 
-    :hash: `` webdev serve ``
+   :hash: `` webdev serve ``
 
 After successful start you will see the URL on which you can access the app.
 
@@ -136,7 +138,7 @@ Open a issue with request.
 
 ## Acknowledgements
 
-    :hash: `` Great thanks to Creative Bracket, Dev Ed Mahmud Ahsan and freeCodeCamp for the tutorials! ``
+   :hash: `` Great thanks to Creative Bracket, Dev Ed Mahmud Ahsan and freeCodeCamp for the tutorials! ``
 
 * [Creative Bracket](https://www.youtube.com/channel/UCHSRZk4k6e-hqIXBBM4b2iA)
 * [Dev Ed](https://www.youtube.com/watch?v=3GqUM4mEYKA&t=931s)
