@@ -1,9 +1,10 @@
 import 'dart:async';
-
-import 'package:server/server.dart';
 import 'dart:convert';
+import 'package:server/server.dart';
 
-class UserControler {
+
+class UserController {
+
   Future<Response> register(Request req) async {
     final payload = await req.readAsString();
 
@@ -37,10 +38,9 @@ class UserControler {
       }
       
       final clientUserData = UserModel.formatDataForResponse(dbUserInfo);
-      final token = generateJWT(clientUserData.toString());
-      return Response.ok(json.encode(token), headers: {
-        HttpHeaders.contentTypeHeader: ContentType.json.mimeType,
-      });
+
+      return Response.ok(json.encode(clientUserData), headers: {
+        HttpHeaders.contentTypeHeader: ContentType.json.mimeType});
 
     } catch (e) {
       print(e);
@@ -49,12 +49,13 @@ class UserControler {
   }
 
   Response logout(Request req) {
-    final token = req.headers['authorization'];
+    final token = req.headers['authentication'];
 
     if (token != null) {
+      // blacklist the token
       return Response.ok('Logged out');
     }
-    
+
     return Response.forbidden('Not Authorized');
   }
 }

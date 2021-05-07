@@ -1,6 +1,6 @@
 import 'package:envify/envify.dart';
 
-part 'conf.g.dart';
+part 'variables.g.dart';
 
 @Envify()
 abstract class Env {

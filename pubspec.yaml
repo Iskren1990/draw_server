@@ -14,6 +14,7 @@ dev_dependencies:
 dependencies: 
   dart_jsonwebtoken: ^2.1.0
   envify: ^2.0.0
+  html: ^0.15.0
   mongo_dart: ^0.7.0+1
   path: ^1.8.0
   shelf_router: ^1.0.0

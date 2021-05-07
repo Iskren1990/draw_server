@@ -3,7 +3,7 @@ import 'package:shelf/shelf.dart';
 const corsHeaders = {
   'Access-Control-Allow-Origin': '*',
   'Access-Control-Allow-Methods': 'GET, POST, PUT, DELETE',
-  'Access-Control-Allow-Headers': 'Origin, Content-Type',
+  'Access-Control-Allow-Headers': '*',
 };
 
 Middleware handleCors() {

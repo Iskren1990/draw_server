@@ -1,6 +1,6 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 
-part of 'conf.dart';
+part of 'variables.dart';
 
 // **************************************************************************
 // EnvifyGenerator

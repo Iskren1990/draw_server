@@ -9,23 +9,31 @@ class UserModel {
   List<DrawModel> draws; // Map<Draws>
 
   UserModel(String payload) {
-    payload = formatDatFromRequest(payload);
+    formatDatFromRequest(payload);
   }
 
-  dynamic formatDatFromRequest(String payload) {
+  void formatDatFromRequest(String payload) {
     final Map<String, dynamic> userInfo = json.decode(payload);
     validate(userInfo);
-    
+
     username = userInfo['username'];
     plainPass = userInfo['password'];
     hashedPass = _hashPassword(plainPass);
   }
 
   static Object formatDataForResponse(Map<String, Object> userInfo) {
+    
+    final token = generateJWT({
+        '_id': userInfo['_id'],
+        'username': userInfo['username'],
+        'draws': userInfo['draws'] ?? []
+      }.toString());
+      
     return {
       '_id': userInfo['_id'],
       'username': userInfo['username'],
-      'draws': userInfo['draws'] ?? []
+      'draws': userInfo['draws'] ?? [],
+      'token': 'Bearer $token',
     };
   }
 
@@ -35,7 +43,7 @@ class UserModel {
     }
   }
 
-   String _hashPassword(String plainPassword) {
-      return hashPassword(plainPassword);
+  String _hashPassword(String plainPassword) {
+    return hashPassword(plainPassword);
   }
 }

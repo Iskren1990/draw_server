@@ -7,7 +7,7 @@ Middleware handleAuth() {
   return (Handler innerHandler) {
     return (Request req) async {
       
-      final authHeader = req.headers['authorization'];
+      final authHeader = req.headers['authentication'];
       var token, jwt;
 
       if (authHeader != null && authHeader.startsWith('Bearer ')) {

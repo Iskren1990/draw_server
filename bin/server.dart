@@ -4,6 +4,7 @@ void main(List<String> arguments) async {
   
   final db = await Db.create(Env.mongoUrl);
   UserService(db);
+  DrawService(db);
 
   final handler = AppRouter().router;
 
